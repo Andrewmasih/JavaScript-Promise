@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JavaScript Promise</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>'Fundamentals in Promises' </h1>
+    <h4> *Also Check JavaScript For The Same Notes On Promises</h4>
+
+    <p> 
+      
+      <h2>How To Work With Promises, 6 Points That Are Necessary For a Promise.</h2>   
+
+      1. Promise (my friend has made a promise that he will call me <br>
+      &nbsp;&nbsp;&nbsp; if he can or cannot get a pizza) <br>
+      2. Promise value (can get a pizza or cannot get a pizza)<br>
+      3. Fulfill the promise (can get a pizza)<br>
+      4. Reject the promise (cannot get a pizza)<br>
+      5. Successful callback (set up the dining table)<br>
+      6. Failure from callback (cook something else at home) <br>
+      
+    </p>
+      
+    <p>
+      <b>3 Things In Code.</b>  <br><br>
+
+      1. How to create a promise (1) <br>
+      2. How to fulfill or reject the promise (2, 3, and 4) <br>
+      3. How to execute 'callback functions' based on whether the Promise is <br>
+      &nbsp;&nbsp;&nbsp; 'fulfilled' or 'rejected?' (5 and 6) <br>
+
+    </p>  
+
+    <p>
+
+    <b>1. How To Create a Promise?</b> <br><br>
+
+      const promise = new Promise() <br>
+      &nbsp;&nbsp;&nbsp; <i>//create a new instance for a new constructor function </i> <br>
+
+    </p>  
+
+    <p>
+  
+    <b>2. How To Fulfill Or Reject The Promise?</b> <br><br>
+
+      const promise = new Promise(() => { <br>
+      }) <br>
+        &nbsp;&nbsp;&nbsp;<i> // the new arrow constructor function accepts 1 function as its arguments, <br>
+        &nbsp;&nbsp;&nbsp; the arrow function automatically receives 2 arguments the, 'resolve and  <br>
+        &nbsp;&nbsp;&nbsp; reject'.. <b>reslove and rejects</b> are both functions </i><br>
+    </p>  
+
+    <p>
+
+      const promise = new Promise((resolve, reject) => {<br>      
+      &nbsp; resolve() <br>      
+      }) <br>
+      
+      &nbsp;&nbsp;&nbsp;<i> // changes the 'resolve' status of the promise when called; <br> 
+      &nbsp;&nbsp;&nbsp; from 'pending' to 'fulfilled'</i> <br><br>
+
+      const promise = new Promise((resolve, reject) => { <br>      
+      &nbsp; reject() <br>      
+      }) <br>
+          
+      &nbsp;&nbsp;&nbsp; <i>// reject function when called; changes status of the <br>             
+      &nbsp;&nbsp;&nbsp; promise to 'rejected'</i> <br>
+
+    </p>
+    <p>
+        <b>  * we can only call the status 'resolve' to pending to <br>       
+            'fulfilled' and 'reject' to 'rejected' </b> <br>
+    </p>
+    
+
+    
+
+    <p> <b>These 2 functions are called after a async/wait operation <br>
+        to keep things simple we can use a 'setTimeout' function, <br>
+        it will take 5sec to the friend to go out and call me. </b> <br>  
+
+        <b>eg.</b> <br>
+
+        const promise = new Promise((resolve, reject) => { <br>
+        &nbsp; setTimeout ( () => { <br>
+    &nbsp;&nbsp;&nbsp;<i> // pizza is availble <br>
+    &nbsp;&nbsp;&nbsp; // change status from 'pending' to 'fulfilled'</i> <br>
+
+        &nbsp; resolve()&nbsp;&nbsp;&nbsp;<i> //calling resolve after 5sec </i><br>
+
+        &nbsp; }, 5000) <br>
+
+        }) <br><br>
+
+        const promise = new Promise((resolve, reject) => { <br>
+          &nbsp; setTimeout ( () => { <br>
+          &nbsp;&nbsp;&nbsp;<i> // pizza is NOT availble <br>
+          &nbsp;&nbsp;&nbsp; // change status from 'pending' to 'rejected'</i> <br>
+
+          &nbsp; reject()<i> //calling rejected after the pizza is NOT availble after 5sec</i> <br>
+
+          &nbsp; }, 5000) <br>
+
+        }) <br>
+    </p>
+
+    <p>
+
+      <b> 3. How to execute callback functions based on the status <br>            
+      change of the Promise? </b> <br><br>
+
+      <b>Success and Failure callbacks.</b> <br><br>
+
+      &nbsp; <b>*Defining 2 callback functions</b> <br><br>
+
+      1. on 'fulfillment' is the function to be called if the result  <br>         
+      is called after the async operation <br><br>
+
+      2. on 'rejection' is the function to be called if the 'reject' is  <br>      
+      called after the async operation <br><br>
+
+      const on fulfillment = () => { <br>
+
+      &nbsp; console.log('set up the table to eat the pizza') <br>
+      } <br><br>
+
+      const onRejection = () => { <br>
+
+      &nbsp; console.log('we have no pizza, start cooking pasta') <br>
+      } <br>
+
+    </p>  
+
+    <p>
+      *Callback functions are functions that are passed in as  <br>              
+      arguments to other functions. <br><br>
+      <b>Where are the other functions?</b> <br><br>
+      The promise constructure function objects give us access to 2 <br>
+      methods or functions called <b>'then()' and 'catch()' or <br>                                                           'promise.then()' and 'promise.catch()'</b> <br><br>
+
+      <b>* promise status: pending to fulfilled? then() is excuted <br>
+      * promise status: pending to rejected? catch() is excuted </b> <br><br>
+
+      <b>promise.then(onFilfullment) <br>
+      promise.catch(onRejection)</b> <br>
+      
+    </p>
+    
+    <p>
+      *Now we can pass data on these functions when they are called <br><br>
+
+      const promise = new Promise((resolve, reject) => { <br>
+      &nbsp;&nbsp; setTimeout ( () => { <br>
+      &nbsp;&nbsp;&nbsp;<i> // pizza is availble <br>
+      &nbsp;&nbsp;&nbsp; // change status from 'pending' to 'fulfilled'</i> <br>
+
+      &nbsp;&nbsp; resolve('Bringing the Pizza') <br>
+
+      &nbsp; }, 5000) <br>
+
+      }) <br><br>
+
+      const promise = new Promise((resolve, reject) => { <br>
+      &nbsp;  setTimeout ( () => { <br>
+      &nbsp;&nbsp;<i> // pizza is NOT availble <br>
+      &nbsp;&nbsp; // change status from 'pending' to 'rejected' </i><br>
+
+      &nbsp; reject('Not bringing the Pizza, takeaway not open') <br>
+
+      &nbsp; }, 5000) <br>
+
+      }) <br><br>
+
+      const onFulFillment = (result) => { <br>
+      &nbsp;&nbsp;&nbsp;<i> // resolve was called </i><br>
+      &nbsp;&nbsp; console.log(result) <br>
+      &nbsp;&nbsp; console.log('set up the table to eat the pizza') <br>
+      } <br><br>
+
+      const onRejection = (error) => { <br>
+      &nbsp;&nbsp;&nbsp;<i> // reject was called </i><br>
+      &nbsp;&nbsp; console.log(error) <br>
+      &nbsp;&nbsp; console.log('we have no pizza, start cooking pasta') <br>
+      } <br>
+
+
+    </p>
+
+    <p id = "note"><b>Next we will look at; Asynchronous JavaScript Course (Async/Await, Promises, Callbacks)</b></p>
+
+
+    
+    <script src="script.js"></script>
+  </body>
+</html>
+
